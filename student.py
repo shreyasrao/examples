@@ -5,6 +5,9 @@ class student(object):
         self.name = name
         self.GPA = GPA
         self.age = age
+        if(not str(self.name).isalpha()): raise ValueError("Name can only contain alpha chars. Cannot be empty")
+        if(self.GPA > 4.0 or self.GPA < 0): raise ValueError("GPA must be within 0 to 4.0")
+        if(self.age < 0): raise ValueError("Age must be greater than 0")
 
     def __repr__(self):
         return self.name
