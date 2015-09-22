@@ -1,3 +1,9 @@
+<<<<<<< HEAD
 Jane and Joe
 John goes to the hill
 Red Hat, Green Hat
+=======
+Jack and Jill
+John goes to the hill
+Red Hat, Green Hat
+>>>>>>> baa32d6... readding the missing files
