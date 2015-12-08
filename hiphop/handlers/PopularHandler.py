@@ -23,26 +23,39 @@ class PopularHandler(webapp2.RequestHandler, BaseHandler):
         user = users.get_current_user()
         user_id = user.user_id()
 
-        soundLinks = list()
-        soundLinks.append("https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/235593121")
-        soundLinks.append("https://w.soundcloud.com/player/?url=https://soundcloud.com/derricknthecity/kellz-christmas-party")
-        soundLinks.append("https://w.soundcloud.com/player/?url=https://soundcloud.com/asapferg/tatted-angel")
+        # soundLinks = list()
+        # soundLinks.append("https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/235593121")
+        # soundLinks.append("https://w.soundcloud.com/player/?url=https://soundcloud.com/derricknthecity/kellz-christmas-party")
+        # soundLinks.append("https://w.soundcloud.com/player/?url=https://soundcloud.com/asapferg/tatted-angel")
 
 
         meta = list()
         meta.append({'artist':'R. Kelly', 'title':'christmas party', 'link': "https://w.soundcloud.com/player/?url=https://soundcloud.com/derricknthecity/kellz-christmas-party"})
+        meta.append({'artist':'Asap Ferg', 'title':'tatted angel', 'link': "https://w.soundcloud.com/player/?url=https://soundcloud.com/asapferg/tatted-angel"})
 
-        linkStore = Popular(songs=meta)
-        linkStore.put()
+        upToDate = False
+        already = Popular.query()
+        for each in already:
+            mod = each.date_modified
+            if(mod==datetime.datetime.now().date()):
+                upToDate=True
+                break
 
-        temp = False
+        if(not upToDate):
+            linkStore = Popular(songs=meta, date_modified=datetime.datetime.now().date())
+            linkStore.put()
 
-        while(temp==False):
+        foundSomething = False
+        while(not foundSomething):
             ret = Popular.query()
             for a in ret:
-                temp=True
+                foundSomething=True
 
         ret = Popular.query().get()
+
+
+        # if(ret.date_modified==datetime.datetime.now().date()):
+        #     self.response.write('SAME DATE')
         # af = dict()
         # af = json.loads(ret.sclinks)
         # self.response.write(ret.songs)
@@ -60,5 +73,5 @@ class PopularHandler(webapp2.RequestHandler, BaseHandler):
             'songs':ret.songs,
         }
 
-        template = JINJA_ENVIRONMENT.get_template('ShowPage2.html')
+        template = JINJA_ENVIRONMENT.get_template('ShowPage3.html')
         self.response.write(template.render(template_values))
