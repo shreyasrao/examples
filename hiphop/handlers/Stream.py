@@ -4,8 +4,28 @@ from google.appengine.ext import ndb
 import urllib2
 from bs4 import BeautifulSoup
 
-class Likes(ndb.Model):
+class Personal(ndb.Model):
     user_id = ndb.StringProperty()
+    liked_artists = ndb.PickleProperty()
+    liked_songs = ndb.PickleProperty()
+
+
+    version = ndb.IntegerProperty()
+
+class Song(ndb.Model):
+    title = ndb.StringProperty()
+    artist = ndb.StringProperty()
+    link = ndb.StringProperty()
+
+    # liked_user = ndb.StringProperty()
+
+class Artist(ndb.Model):
+    name = ndb.StringProperty()
+    image_link = ndb.StringProperty()
+    id = ndb.IntegerProperty()
+
+# class Likes(ndb.Model):
+#     user_id = ndb.StringProperty()
 
 class Popular(ndb.Model):
     songs = ndb.PickleProperty()
