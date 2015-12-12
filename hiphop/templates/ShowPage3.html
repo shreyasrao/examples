@@ -1,6 +1,6 @@
 <!doctype html>
 {% autoescape true %}
-    <h2>What's new...</h2>
+{#    <h2>What's new...</h2>#}
     <form action="/like_songs" method="post">
         <table class="table">
             <thead>
@@ -21,7 +21,7 @@
                     </iframe>
                 </td>
                 <td>
-                    <input type="checkbox" name="liked_songs" value="{{ song.title }}">
+                    <input type="checkbox" name="liked_songs" value="{{ song.artist }}|{{ song.title }}|{{ song.link }}">
                 </td>
                 </tr>
             {% endfor %}

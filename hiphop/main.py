@@ -23,8 +23,11 @@ from handlers.ViewMapHandler import ViewMapHandler
 from handlers.LatestHandler import LatestHandler
 from handlers.PopularHandler import PopularHandler
 from handlers.LikeSongHandler import LikeSongHandler
-
-
+from handlers.RecommendArtistsHandler import RecomendArtistHandler
+from handlers.RecommendEventsHandler import RecomendEventsHandler
+from handlers.RemoveSongsHandler import RemoveSongsHandler
+from handlers.LikeArtistHandler import LikeArtistHandler
+from handlers.RemoveArtistsHandler import RemoveArtistsHandler
 
 # app = webapp2.WSGIApplication([('/', MainPageHandler),
 #                                ('/management',ManagementHandler),
@@ -45,9 +48,14 @@ from handlers.LikeSongHandler import LikeSongHandler
 #                               ], debug=True)
 
 app = webapp2.WSGIApplication([('/', MainPageHandler),
-                               ('/management',ManagementHandler),
+                               # ('/management',ManagementHandler),
                                ('/latest',LatestHandler),
                                ('/popular',PopularHandler),
                                ('/error',ErrorHandler),
                                ('/like_songs',LikeSongHandler),
+                               ('/like_artists',LikeArtistHandler),
+                               ('/rec_artists',RecomendArtistHandler),
+                               ('/rec_events',RecomendEventsHandler),
+                               ('/remove_songs',RemoveSongsHandler),
+                               ('/remove_artists',RemoveArtistsHandler),
                               ], debug=True)

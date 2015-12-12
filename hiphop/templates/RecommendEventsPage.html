@@ -1,0 +1,20 @@
+<!doctype html>
+{% autoescape true %}
+{#<h4 class="text-center">These recommendations will change based on your likes</h4>#}
+<div class="row">
+  {% for event in events %}
+
+
+        <div class="col-md-6" align="center">
+        <h5><a href="{{ event.Url }}">{{ event.Title }}</a></h5>
+        {{ event.Location }}<br>
+        {{ event.Date }}<br><br>
+        </div>
+  {% endfor %}
+
+
+{#    .col-md-4#}
+</div>
+
+</html>
+{% endautoescape %}

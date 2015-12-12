@@ -3,12 +3,11 @@ __author__ = 'shreyas'
 import webapp2
 import jinja2
 import json
-# from Stream import Stream
 from google.appengine.api import users
 from BaseHandler import BaseHandler
-from Stream import Latest
 from Stream import Popular
 import datetime
+import threading
 
 class PopularHandler(webapp2.RequestHandler, BaseHandler):
     def get(self):

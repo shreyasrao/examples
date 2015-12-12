@@ -6,6 +6,8 @@ from Stream import Personal
 from handlers.BaseHandler import BaseHandler
 from Stream import Artist
 from Stream import Song
+import jinja2
+import time
 import cgi
 from google.appengine.ext import ndb
 
@@ -25,9 +27,10 @@ class LikeSongHandler(webapp2.RequestHandler, BaseHandler):
 
             new_artist = self.createArtist(artist)
             if not new_artist:
-                self.response.write("Artist not found: " + artist)
+                # self.response.write("Artist not found: " + artist)
+                new_artist
             else:
-                self.response.write("Artist: " + artist + " id: " + str(new_artist.id))
+                # self.response.write("Artist: " + artist + " id: " + str(new_artist.id))
                 already_liked_artist = False
 
                 #dont duplicated liked artists in Personal
@@ -79,14 +82,29 @@ class LikeSongHandler(webapp2.RequestHandler, BaseHandler):
 
         me.version = old_version + 1
         me.put()
+        time.sleep(1.5)
+        self.redirect('/like_songs')
 
 
+    def get(self):
+        user_id = users.get_current_user().user_id()
+        me = Personal.query(Personal.user_id==user_id).get()
+        self.cache('liked_songs')
 
-            # self.response.write("COMB:" + str(song) + "\n")
-            # self.response.write("artist:" + str(s[0]) + "\n")
-            # self.response.write("title:" + str(s[1]) + "\n")
-            # self.response.write("link:" + str(s[2]) + "\n")
+        if me.liked_songs:
+            JINJA_ENVIRONMENT = jinja2.Environment(
+            loader=jinja2.FileSystemLoader('templates'),
+            extensions=['jinja2.ext.autoescape'],
+            autoescape=True)
 
+            template_values = {
+                'songs':me.liked_songs,
+            }
+
+            template = JINJA_ENVIRONMENT.get_template('LikedSongs.html')
+            self.response.write(template.render(template_values))
+        else:
+            self.response.write("You have not liked any songs yet")
 
 
 

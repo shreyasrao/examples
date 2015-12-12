@@ -38,8 +38,23 @@ class RecomendArtistHandler(webapp2.RequestHandler, BaseHandler):
                     new_artist = Artist(name=artist['performer']['name'], id=artist['performer']['id'], image_link=artist['performer']['image'])
                     recommended_artists.append(new_artist)
 
+            # recommended_artists.append(Artist(name='Test', id=0, image_link=""))
+            # recommended_artists.append(Artist(name='Test_2', id=0, image_link=""))
+
             for thing in recommended_artists:
                 self.response.write(thing.name)
+
+            JINJA_ENVIRONMENT = jinja2.Environment(
+            loader=jinja2.FileSystemLoader('templates'),
+            extensions=['jinja2.ext.autoescape'],
+            autoescape=True)
+
+            template_values = {
+                'artists':recommended_artists,
+            }
+
+            template = JINJA_ENVIRONMENT.get_template('RecommendArtistsPage.html')
+            self.response.write(template.render(template_values))
 
         else:
             self.response.write("In order to get recommendations, you must like least 1 song")
