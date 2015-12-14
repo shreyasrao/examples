@@ -22,53 +22,8 @@ class PopularHandler(webapp2.RequestHandler, BaseHandler):
         user = users.get_current_user()
         user_id = user.user_id()
 
-        # soundLinks = list()
-        # soundLinks.append("https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/235593121")
-        # soundLinks.append("https://w.soundcloud.com/player/?url=https://soundcloud.com/derricknthecity/kellz-christmas-party")
-        # soundLinks.append("https://w.soundcloud.com/player/?url=https://soundcloud.com/asapferg/tatted-angel")
-
-
-        meta = list()
-        meta.append({'artist':'R. Kelly', 'title':'Christmas Party', 'link': "https://w.soundcloud.com/player/?url=https://soundcloud.com/derricknthecity/kellz-christmas-party"})
-        meta.append({'artist':'Asap Ferg', 'title':'Tatted Angel', 'link': "https://w.soundcloud.com/player/?url=https://soundcloud.com/asapferg/tatted-angel"})
-        meta.append({'title': 'Want Some Feat. DJ Chose [New Song]', 'link': 'https://w.soundcloud.com/player/?url=https://soundcloud.com/akon/akon-want-some-feat-dj-chose', 'artist': 'Akon'})
-
-        # upToDate = False
-        # already = Popular.query()
-        # for each in already:
-        #     mod = each.date_modified
-        #     if(mod==datetime.datetime.now().date()):
-        #         upToDate=True
-        #         break
-        #
-        # if(not upToDate):
-        #     self.response.write("Not up to date")
-            # linkStore = Popular(songs=meta, date_modified=datetime.datetime.now().date())
-            # linkStore.put()
-
-        # foundSomething = False
-        # while(not foundSomething):
-        #     ret = Popular.query()
-        #     for a in ret:
-        #         foundSomething=True
-
+        #CRON job is responsible for scraping for songs in the background and updating the data store
         ret = Popular.query().order(-Popular.date_modified).get()
-
-
-        # if(ret.date_modified==datetime.datetime.now().date()):
-        #     self.response.write('SAME DATE')
-        # af = dict()
-        # af = json.loads(ret.sclinks)
-        # self.response.write(ret.songs)
-
-
-        #Get the list of streams
-        # my_streams = Stream.query(Stream.owner_id == user_id)
-        # subscribed_streams = Stream.query(Stream.subscribed_users.IN([user_id]))
-
-        # base = Latest.query().get().sclinks
-
-        # self.response.write(str(base))
 
         template_values = {
             'songs':ret.songs,

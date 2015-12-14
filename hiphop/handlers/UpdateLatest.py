@@ -31,9 +31,6 @@ class UpdateLatest(webapp2.RequestHandler, BaseHandler):
             start =  now.index("href=") + 6
             end = now.index('"',start)
             links.append("http://www.hotnewhiphop.com" + now[start:end])
-        # print "the numbers of links is " + str(len(links))
-
-        # web = "http://www.hotnewhiphop.com/r-kelly-christmas-party-new-song.1967561.html"
 
         soundLinks = list()
         notFound = list()

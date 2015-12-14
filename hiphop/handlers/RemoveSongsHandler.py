@@ -30,11 +30,4 @@ class RemoveSongsHandler(webapp2.RequestHandler, BaseHandler):
         me.put()
         time.sleep(1.5)
 
-        # updated = False
-        #
-        # while(not updated):
-        #     me = Personal.query(Personal.user_id==user_id).get()
-        #     if (me.version == new_version):
-        #         updated = True
-
         self.redirect('/like_songs')

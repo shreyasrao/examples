@@ -25,7 +25,7 @@ class RecomendEventsHandler(webapp2.RequestHandler, BaseHandler):
         if me.liked_artists:
             key = '&client_id=Mzk0Njg1OHwxNDQ5NTQ2NTUx'
             zip = '&postal_code=78705'
-            base_url = "http://api.seatgeek.com/2/recommendations?" #performers.id=35&performers.id=2446&client_id="
+            base_url = "http://api.seatgeek.com/2/recommendations?"
 
             my_fav_artists = me.liked_artists
             base_url = base_url + "performers.id=" + str(my_fav_artists.pop(0).id)
@@ -52,13 +52,8 @@ class RecomendEventsHandler(webapp2.RequestHandler, BaseHandler):
                     a.Location = Location
                     a.Url = Url
                     a.Date = Date
-
-                    # new_event = {'title':Title, 'location':Location, 'date':Date, 'url':Url}
                     events.append(a)
-                    # recommended_events.append(new_event)
 
-            # for thing in recommended_events:
-            #     self.response.write(thing['title'])
 
                 JINJA_ENVIRONMENT = jinja2.Environment(
                 loader=jinja2.FileSystemLoader('templates'),

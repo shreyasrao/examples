@@ -19,7 +19,7 @@ class RecomendArtistHandler(webapp2.RequestHandler, BaseHandler):
         if me.liked_artists:
             key = '&client_id=Mzk0Njg1OHwxNDQ5NTQ2NTUx'
 
-            base_url = "http://api.seatgeek.com/2/recommendations/performers?" #performers.id=35&performers.id=2446&client_id="
+            base_url = "http://api.seatgeek.com/2/recommendations/performers?"
 
             my_fav_artists = me.liked_artists
             base_url = base_url + "performers.id=" + str(my_fav_artists.pop(0).id)
@@ -38,11 +38,6 @@ class RecomendArtistHandler(webapp2.RequestHandler, BaseHandler):
                     new_artist = Artist(name=artist['performer']['name'], id=artist['performer']['id'], image_link=artist['performer']['image'])
                     recommended_artists.append(new_artist)
 
-            # recommended_artists.append(Artist(name='Test', id=0, image_link=""))
-            # recommended_artists.append(Artist(name='Test_2', id=0, image_link=""))
-
-            # for thing in recommended_artists:
-            #     self.response.write(thing.name)
 
                 JINJA_ENVIRONMENT = jinja2.Environment(
                 loader=jinja2.FileSystemLoader('templates'),

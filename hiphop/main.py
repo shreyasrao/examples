@@ -19,7 +19,6 @@ from handlers.UpdatePopular import UpdatePopular
 
 
 app = webapp2.WSGIApplication([('/', MainPageHandler),
-                               # ('/management',ManagementHandler),
                                ('/latest',LatestHandler),
                                ('/popular',PopularHandler),
                                ('/error',ErrorHandler),
