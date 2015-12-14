@@ -104,8 +104,8 @@ class LikeSongHandler(webapp2.RequestHandler, BaseHandler):
             template = JINJA_ENVIRONMENT.get_template('LikedSongs.html')
             self.response.write(template.render(template_values))
         else:
-            self.response.write("You have not liked any songs yet")
-
+            # self.response.write("You have not liked any songs yet")
+            self.errorpage("You have not liked any songs yet")
 
 
 

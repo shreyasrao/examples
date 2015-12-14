@@ -1,0 +1,105 @@
+<!doctype html>
+{% autoescape true %}
+{#    <h4>Artists from the songs that you have liked:</h4>#}
+    <form action="/remove_artists" method="post">
+{#        <div class="panel panel-default">#}
+{#          <!-- Default panel contents -->#}
+{#          <div class="panel-heading">Artists from the songs you have liked</div>#}
+{#<div class="jumbotron" style="width: 50%">#}
+{#  <h1>Hello, world!</h1>#}
+{#  <p>...</p>#}
+{#  <p><a class="btn btn-primary btn-lg" href="#" role="button">Learn more</a></p>#}
+{#</div>#}
+
+
+
+    <div class="pull-right">
+<button type="submit" class="btn btn-danger"> Remove From Favorites</button>
+</div><br><br>
+{#<ul class="list-group">#}
+
+    {% for artist in artists %}
+{#  <li class="list-group-item">#}
+
+             <p style="float: left; font-size: 9pt; text-align: center; width: 23%; margin-right: 1%; margin-bottom: 0.5em;">
+                    <div class="panel panel-primary" style="width: 300pt">
+                      <div class="panel-heading">
+                          {{ artist.name }}
+                          <div class="pull-right">
+                          <input type="checkbox" name="remove_artists" value="{{ artist.id }}">
+                              </div>
+                      </div>
+                </div>
+             </p>
+
+    {% endfor %}
+{#</ul>#}
+
+
+
+{##}
+{#            <table class="table table-bordered align-left">#}
+{#                <col width="50">#}
+{#                <col width="1">#}
+{#                <thead>#}
+{#                <tr>#}
+{#                    <th>Artist</th>#}
+{#                    <th>#}
+{#                        <div class="btn-group" role="group" aria-label="...">#}
+{#                          <button type="submit" class="btn btn-danger"> Remove From Favorites#}
+{#                              <input type="submit" value="Remove From Favorites">#}
+{#                          </button>#}
+{##}
+{#                    </th>#}
+{#                </tr>#}
+{#                </thead>#}
+{#                <tbody>#}
+{#                {% for artist in artists %}#}
+{#                    <tr>#}
+{#                    <td>#}
+{#                        {{ artist.name }}#}
+{#                    </td>#}
+{#                    <td>#}
+{#                        <input type="checkbox" name="remove_artists" value="{{ artist.id }}">#}
+{#                    </td>#}
+{#                    </tr>#}
+{#                {% endfor %}#}
+{#                </tbody>#}
+{#            </table>#}
+
+{#        </div>#}
+
+    </form>
+
+
+{#<h2>Streams I own</h2>#}
+{#    <form action="/delete_streams" method="post">#}
+{#        <table class="table">#}
+{#            <thead>#}
+{#            <tr>#}
+{#                <th>Name</th>#}
+{#                <th>Last New Picture</th>#}
+{#                <th>Number of Pictures</th>#}
+{#                <th>Delete</th>#}
+{#            </tr>#}
+{#            </thead>#}
+{#            <tbody>#}
+{#            {% for stream in my_streams %}#}
+{#            <tr>#}
+{#                <td><a href="/view_stream/?stream_name={{ stream.name }}" >{{ stream.name }}</a></td>#}
+{#                <td>{{ stream.date_last_added }}</td>#}
+{#                <td>{{ stream.num_photos }}</td>#}
+{#                <td>#}
+{#                    <input type="checkbox" name="deleted_streams" value="{{ stream.name }}">#}
+{#                </td>#}
+{#            </tr>#}
+{#            {% endfor %}#}
+{#            </tbody>#}
+{#        </table>#}
+{#        <input type="submit" name="delete_checked" value="Delete Checked Streams">#}
+{#    </form>#}
+
+
+</html>
+{% endautoescape %}
+

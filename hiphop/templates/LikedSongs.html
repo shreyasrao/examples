@@ -1,32 +1,32 @@
 <!doctype html>
 {% autoescape true %}
-    <h2>Your Favorite Songs:</h2>
+{#    <h2>Your Favorite Songs:</h2>#}
+
     <form action="/remove_songs" method="post">
-        <table class="table">
-            <thead>
-            <tr>
-                <th>Song</th>
-                <th><input type="submit" value="Remove From Favorites"></th>
-            </tr>
-            </thead>
-            <tbody>
-            {% for song in songs %}
-                <tr>
-                <td>
-                    {{ song.artist }} - {{ song.title }}
-                    <iframe width="100%" height="150" scrolling="yes" frameborder="no"
+        <div class="pull-right">
+                <button type="submit" class="btn btn-danger"> Remove From Favorites</button>
+        </div>
+        <br>
+        <br>
+        {% for song in songs %}
+            <div class="panel panel-primary">
+              <div class="panel-heading">
+                {{ song.artist }} - {{ song.title }}
+                <div class="pull-right">
+                    <input align="right" type="checkbox" name="remove_songs" value="{{ song.link }}">
+                </div>
+              </div>
+              <div class="panel-body">
+                <iframe width="100%" height="150" scrolling="yes" frameborder="no"
                         src="{{ song.link }}&amp;
                         auto_play=true&amp;hide_related=true&amp;show_comments=false&amp;show_user=false&amp;
                         show_reposts=false&amp;visual=false">
-                    </iframe>
-                </td>
-                <td>
-                    <input type="checkbox" name="liked_songs" value="{{ song.artist }}|{{ song.title }}|{{ song.link }}">
-                </td>
-                </tr>
+                </iframe>
+              </div>
+            </div>
+
             {% endfor %}
-            </tbody>
-        </table>
+
     </form>
 
 

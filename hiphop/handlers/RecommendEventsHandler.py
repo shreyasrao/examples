@@ -60,17 +60,20 @@ class RecomendEventsHandler(webapp2.RequestHandler, BaseHandler):
             # for thing in recommended_events:
             #     self.response.write(thing['title'])
 
-            JINJA_ENVIRONMENT = jinja2.Environment(
-            loader=jinja2.FileSystemLoader('templates'),
-            extensions=['jinja2.ext.autoescape'],
-            autoescape=True)
+                JINJA_ENVIRONMENT = jinja2.Environment(
+                loader=jinja2.FileSystemLoader('templates'),
+                extensions=['jinja2.ext.autoescape'],
+                autoescape=True)
 
-            template_values = {
-                'events':events,
-            }
+                template_values = {
+                    'events':events,
+                }
 
-            template = JINJA_ENVIRONMENT.get_template('RecommendEventsPage.html')
-            self.response.write(template.render(template_values))
+                template = JINJA_ENVIRONMENT.get_template('RecommendEventsPage.html')
+                self.response.write(template.render(template_values))
+            else:
+                self.errorpage("No recommendations can be given for the artists that you have liked")
 
         else:
-            self.response.write("In order to get recommendations, you must like least 1 song")
+            # self.response.write("In order to get recommendations, you must like least 1 song")
+            self.errorpage("In order to get recommendations, you must like least 1 song")

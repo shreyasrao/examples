@@ -116,5 +116,17 @@ class BaseHandler():
         self.response.write(searchHead.render(headerInfo))
 
     def errorpage(self, msg):
-        self.cache('')
-        self.response.write(msg)
+        # self.cache('')
+
+        JINJA_ENVIRONMENT = jinja2.Environment(
+        loader=jinja2.FileSystemLoader('templates'),
+        extensions=['jinja2.ext.autoescape'],
+        autoescape=True)
+
+        template_values = {'message':msg}
+
+        searchHead = JINJA_ENVIRONMENT.get_template('ErrorPage.html')
+        # self.response.write(searchHead.render(current = currentTab))
+        self.response.write(searchHead.render(template_values))
+
+        # self.response.write(msg)

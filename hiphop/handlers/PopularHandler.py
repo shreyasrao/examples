@@ -29,28 +29,30 @@ class PopularHandler(webapp2.RequestHandler, BaseHandler):
 
 
         meta = list()
-        meta.append({'artist':'R. Kelly', 'title':'christmas party', 'link': "https://w.soundcloud.com/player/?url=https://soundcloud.com/derricknthecity/kellz-christmas-party"})
-        meta.append({'artist':'Asap Ferg', 'title':'tatted angel', 'link': "https://w.soundcloud.com/player/?url=https://soundcloud.com/asapferg/tatted-angel"})
+        meta.append({'artist':'R. Kelly', 'title':'Christmas Party', 'link': "https://w.soundcloud.com/player/?url=https://soundcloud.com/derricknthecity/kellz-christmas-party"})
+        meta.append({'artist':'Asap Ferg', 'title':'Tatted Angel', 'link': "https://w.soundcloud.com/player/?url=https://soundcloud.com/asapferg/tatted-angel"})
+        meta.append({'title': 'Want Some Feat. DJ Chose [New Song]', 'link': 'https://w.soundcloud.com/player/?url=https://soundcloud.com/akon/akon-want-some-feat-dj-chose', 'artist': 'Akon'})
 
-        upToDate = False
-        already = Popular.query()
-        for each in already:
-            mod = each.date_modified
-            if(mod==datetime.datetime.now().date()):
-                upToDate=True
-                break
+        # upToDate = False
+        # already = Popular.query()
+        # for each in already:
+        #     mod = each.date_modified
+        #     if(mod==datetime.datetime.now().date()):
+        #         upToDate=True
+        #         break
+        #
+        # if(not upToDate):
+        #     self.response.write("Not up to date")
+            # linkStore = Popular(songs=meta, date_modified=datetime.datetime.now().date())
+            # linkStore.put()
 
-        if(not upToDate):
-            linkStore = Popular(songs=meta, date_modified=datetime.datetime.now().date())
-            linkStore.put()
+        # foundSomething = False
+        # while(not foundSomething):
+        #     ret = Popular.query()
+        #     for a in ret:
+        #         foundSomething=True
 
-        foundSomething = False
-        while(not foundSomething):
-            ret = Popular.query()
-            for a in ret:
-                foundSomething=True
-
-        ret = Popular.query().get()
+        ret = Popular.query().order(-Popular.date_modified).get()
 
 
         # if(ret.date_modified==datetime.datetime.now().date()):

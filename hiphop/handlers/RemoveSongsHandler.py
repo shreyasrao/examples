@@ -4,11 +4,7 @@ import webapp2
 from google.appengine.api import users
 from Stream import Personal
 from handlers.BaseHandler import BaseHandler
-from Stream import Artist
-from Stream import Song
-import jinja2
-import cgi
-from google.appengine.ext import ndb
+import time
 
 class RemoveSongsHandler(webapp2.RequestHandler, BaseHandler):
     def post(self):
@@ -32,11 +28,13 @@ class RemoveSongsHandler(webapp2.RequestHandler, BaseHandler):
         me.liked_songs = newSongs
 
         me.put()
+        time.sleep(1.5)
 
-        updated = False
+        # updated = False
+        #
+        # while(not updated):
+        #     me = Personal.query(Personal.user_id==user_id).get()
+        #     if (me.version == new_version):
+        #         updated = True
 
-        while(not updated):
-            me = Personal.query(Personal.user_id==user_id).get()
-            if (me.version == new_version):
-                updated = True
-                self.redirect('/like_songs')
+        self.redirect('/like_songs')
