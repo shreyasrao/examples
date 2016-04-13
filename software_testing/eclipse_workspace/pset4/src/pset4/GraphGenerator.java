@@ -118,10 +118,14 @@ public class GraphGenerator {
                 		else if(inst instanceof INVOKESTATIC){
                 			INVOKESTATIC callee = (INVOKESTATIC) inst;
                 			String callMethodName = callee.getMethodName(cpg);
-                			System.out.println("CAAAAAAALL to: " + callee.getIndex() + " " + callMethodName + " ");// + " from " + m);
+                			System.out.println("CAAAAAAALL to: " + callee.getIndex() + " " + callMethodName + " " + " from " + m.getName());
                 			Method calleeMethod = this.getMethodFromName(callMethodName, cg.getMethods());
                 			if(calleeMethod!=null){
                 				cfg.addEdge(position, m, jc, 0, calleeMethod, jc); //double check assignment of position
+                				Set<String> calls = cfg.invocations.get(m.getName());
+                				if(calls == null){calls = new HashSet<String>();}
+                				calls.add(calleeMethod.getName());
+                				cfg.invocations.put(m.getName(), calls);
                 			}
                 			
                 			//NOTE: STILL DON"T KNOW HOW TO HANDLE RETURNS PROPERLY
@@ -147,7 +151,10 @@ public class GraphGenerator {
         GraphGenerator gg = new GraphGenerator();
 //        gg.createCFG("pset4.C"); // example invocation of createCFG
         //System.out.println(gg.createCFG("pset4.C"));
-        System.out.println(gg.createCFGWithMethodInvocation("pset4.D")); // example invocation of createCFGWithMethodInovcation
+//        System.out.println(gg.createCFGWithMethodInvocation("pset4.D")); // example invocation of createCFGWithMethodInovcation
+        CFG d = gg.createCFGWithMethodInvocation("pset4.D");
+        boolean reach = d.isReachable("main", "pset4.D", "bar", "pset4.D");
+        System.out.println(reach);
     }
 }
 
