@@ -19,18 +19,17 @@ public class GraphGenerator{
 		g.addEdge(5, 6);
 		g.addEdge(6, 1);
 		g.genPaths();
-//		System.out.println(g.paths);
-//		System.out.println(g.cycles);
 		g.reduce();
-		System.out.println(g.cycles);
-		System.out.println(g.paths);
-		ArrayList<Integer> a = new ArrayList<Integer>();
-		a.add(7);
-		ArrayList<Integer> b = new ArrayList<Integer>();
-		b.add(3);
-		b.add(7);
-		System.out.println(g.subpath(a,b));
-		//{3,5}
+		System.out.println(g.primepaths);
+		
+		
+//		ArrayList<Integer> a = new ArrayList<Integer>();
+//		a.add(7);
+//		ArrayList<Integer> b = new ArrayList<Integer>();
+//		b.add(3);
+//		b.add(7);
+//		System.out.println(g.subpath(a,b));
+//		//{3,5}
 //		System.out.println(g.edges.get(1));
 //		Map<Integer, ArrayList<Integer>> a = new TreeMap<Integer, ArrayList<Integer>>();
 	}

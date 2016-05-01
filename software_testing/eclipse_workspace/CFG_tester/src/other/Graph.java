@@ -3,6 +3,7 @@ import java.util.*;
 public class Graph {
 	public Map<Integer, Set<ArrayList<Integer>>> paths = null;
 	public Set<ArrayList<Integer>> cycles = null;
+	public Set<ArrayList<Integer>> primepaths = null;
 	private Integer pathLen = null;
 	private boolean explored = false;
 	
@@ -58,6 +59,12 @@ public class Graph {
 			paths.put(i, smallpaths);
 			
 		}
+		
+		primepaths = new HashSet<ArrayList<Integer>>();
+		for(int i=1;i<=pathLen;i++){
+			primepaths.addAll(paths.get(i));
+		}
+		primepaths.addAll(cycles);
 		
 	}
 	
