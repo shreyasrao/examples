@@ -1,0 +1,70 @@
+<!doctype html>
+{% extends "Base.html" %}
+{% autoescape true %}
+<html lang="en">
+<body>
+{% block b1 %}
+
+    <br>
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+
+    <div>
+        <p class="navbar-text">
+            <span class="label label-default">Nidhi Industries</span>
+        </p>
+
+        <ul class="nav navbar-nav">
+        {% if current != "chapati" %}
+            <li><a href="/chapati" class="navbar-link">Chapati</a></li>
+        {% else %}
+            <li ><p class="navbar-text"><font color="#ff8c00">Chapati</font></p></li>
+        {% endif %}
+
+        {% if current != "poori" %}
+            <li><a href="/poori" class="navbar-link">Poori</a></li>
+        {% else %}
+            <li><p class="navbar-text"><font color="#ff8c00">Poori</font></p></li>
+        {% endif %}
+
+{#        {% if current != "tea" %}#}
+{#            <li><a href="/tea" class="navbar-link">Tea</a></li>#}
+{#        {% else %}#}
+{#            <li><p class="navbar-text"><font color="#ff8c00">Tea</font></p></li>#}
+{#        {% endif %}#}
+{##}
+        {% if current != "stock" %}
+            <li><a href="/stock" class="navbar-link">Stock</a></li>
+        {% else %}
+            <li><p class="navbar-text"><font color="#ff8c00">Stock</font></p></li>
+        {% endif %}
+
+        {% if current != "sales" %}
+            <li><a href="/sales" class="navbar-link">Sales</a></li>
+        {% else %}
+            <li><p class="navbar-text"><font color="#ff8c00">Sales</font></p></li>
+        {% endif %}
+{##}
+{#        {% if current != "rec_events" %}#}
+{#            <li><a href="/rec_events" class="navbar-link">Recommended Events</a></li>#}
+{#        {% else %}#}
+{#            <li><p class="navbar-text"><font color="#ff8c00">Recommended Events</font></p></li>#}
+{#        {% endif %}#}
+        </ul>
+
+        <p class="navbar-text">
+            Signed in as <span class="label label-primary">{{ user }}</span>
+        </p>
+{#        <p class="navbar-text navbar-right">Signed in as <a href="#" class="navbar-link">Mark Otto</a></p>#}
+        <button type="button" class="btn btn-default navbar-btn"><a href="{{ logout_url }}" class="navbar-link">Log Out</a></button>
+    </div>
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+</nav>
+{% endblock %}
+</body>
+
+</html>
+{% endautoescape %}

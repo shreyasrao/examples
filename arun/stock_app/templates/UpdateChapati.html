@@ -1,0 +1,23 @@
+<!doctype html>
+{% autoescape true %}
+{#    <h4>Artists from the songs that you have liked:</h4>#}
+    <form action="/add_chapati" method="post">
+
+    <br>
+    <input type="radio" name="calc" value="add"> ADD &nbsp;&nbsp;
+    <input type="radio" name="calc" value="remove" checked> REMOVE<br>
+
+
+    Package Type:<br>
+  <input type="radio" name="package" value="chapati10" checked> 10 chapatis<br>
+  <input type="radio" name="package" value="chapati20"> 20 chapatis <br>
+  <input type="radio" name="package" value="chapati25"> 25 chapatis <br><br>
+
+    Number of packages:
+  <input type="number" name="quantity" min="1">
+  <input type="submit" value= "Update Stock">
+
+</form>
+
+</html>
+{% endautoescape %}
