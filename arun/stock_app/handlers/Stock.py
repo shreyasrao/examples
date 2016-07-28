@@ -9,8 +9,8 @@ class stock(ndb.Model):
 
     chapati = ndb.PickleProperty()
     poori = ndb.PickleProperty()
-    tea = ndb.PickleProperty()
-    coffee = ndb.PickleProperty()
+    # tea = ndb.PickleProperty()
+    # coffee = ndb.PickleProperty()
 
 class daily(ndb.Model):
     user_id = ndb.StringProperty()
@@ -18,29 +18,43 @@ class daily(ndb.Model):
 
     chapati = ndb.PickleProperty()
     poori = ndb.PickleProperty()
-    tea = ndb.PickleProperty()
-    coffee = ndb.PickleProperty()
+    # tea = ndb.PickleProperty()
+    # coffee = ndb.PickleProperty()
 
 
 class chapati10(ndb.Model):
     size = 10
     type = "chapati"
     id="chapati10"
-    name = "chapati 10 count"
+    name = "Chapati 10 pack"
     quantity = ndb.IntegerProperty()
 
 class chapati20(ndb.Model):
     size = 20
     type = "chapati"
     id="chapati20"
-    name = "chapati 20 count"
+    name = "Chapati 20 pack"
     quantity = ndb.IntegerProperty()
 
 class chapati25(ndb.Model):
     size = 25
     type = "chapati"
     id="chapati25"
-    name = "chapati 25 count"
+    name = "Chapati 25 pack"
+    quantity = ndb.IntegerProperty()
+
+class poori10(ndb.Model):
+    size = 10
+    type = "poori"
+    id="poori10"
+    name = "Poori 10 pack"
+    quantity = ndb.IntegerProperty()
+
+class poori20(ndb.Model):
+    size = 20
+    type = "poori"
+    id="poori20"
+    name = "Poori 20 pack"
     quantity = ndb.IntegerProperty()
 
 #

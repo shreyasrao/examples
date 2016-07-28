@@ -4,11 +4,14 @@ import jinja2
 import json
 import urllib2
 import os
-# from Stream import Stream
+
 from google.appengine.api import users
-# from Stream import Personal
-# from Stream import Artist
-# from Stream import Song
+from Stock import stock
+from Stock import chapati10
+from Stock import chapati20
+from Stock import chapati25
+from Stock import daily
+from datetime import datetime
 
 class BaseHandler():
 
@@ -57,7 +60,64 @@ class BaseHandler():
     #         # for key in output:
     #         #     print "Key is " + key + " : " + str(output[key])
 
-    known = {'servotechudupi@gmail.com':True, 'test@example.com':True}
+    known = {'servotechudupi':True, 's23rao':False}
+
+    def start(self):
+
+        user = users.get_current_user()
+        # user_id = user.user_id()
+        user_id = 'nidhi'
+
+        me = stock.query(stock.user_id==user_id).get()
+
+        if me:
+            me
+        else:
+            me = stock(user_id=str(user_id))
+
+        if me.chapati:
+            me.chapati
+        else:
+            new_10 = chapati10(quantity=0)
+            new_20 = chapati20(quantity=0)
+            new_25 = chapati25(quantity=0)
+
+            new_chapatis = list()
+            new_chapatis.append(new_10)
+            new_chapatis.append(new_20)
+            new_chapatis.append(new_25)
+
+            me.chapati = new_chapatis
+
+        me.put()
+
+    def daily(self):
+        user = users.get_current_user()
+        # user_id = user.user_id()
+        user_id = 'nidhi'
+
+        today = daily.query(daily.user_id==user_id, daily.date==datetime.now().date()).get()
+
+        if today:
+            today
+        else:
+            today = daily(user_id=str(user_id), date=datetime.now().date())
+
+        if today.chapati:
+            today.chapati
+        else:
+            new_10 = chapati10(quantity=0)
+            new_20 = chapati20(quantity=0)
+            new_25 = chapati25(quantity=0)
+
+            new_chapatis = list()
+            new_chapatis.append(new_10)
+            new_chapatis.append(new_20)
+            new_chapatis.append(new_25)
+
+            today.chapati = new_chapatis
+
+        today.put()
 
     def cache(self, currentTab):
         JINJA_ENVIRONMENT = jinja2.Environment(

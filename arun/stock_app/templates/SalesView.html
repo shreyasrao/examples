@@ -1,11 +1,13 @@
 <!doctype html>
+{% extends "Base.html" %}
 {% autoescape true %}
 
+{% block b1 %}
 <br><br>
 
 Showing sales data for: {{ itemType }} from {{ date }}<br>
 
-<table style="width:100%">
+<table class="table table-striped">
     <tr>
     <th>Item</th>
     <th>Quantity</th>
@@ -19,7 +21,7 @@ Showing sales data for: {{ itemType }} from {{ date }}<br>
     {% endfor %}
 
 </table>
-
+{% endblock %}
 <br><br>
 
 </html>

@@ -17,40 +17,58 @@ from Stock import daily
 class AddChapati(webapp2.RequestHandler, BaseHandler):
 
     def post(self):
-        user_id = users.get_current_user().user_id()
-        me = stock.query(stock.user_id==user_id).get()
-
+        # user_id = users.get_current_user().user_id()
         packageType = self.request.get_all('package').pop(0)
         numPackages = self.request.get_all('quantity').pop(0)
         calc = self.request.get_all('calc').pop(0)
 
-        self.cache('chapati')
+        if (int(numPackages) < 1) : #or (not isinstance(numPackages, int)):
+            # Error Handler
+            # JINJA_ENVIRONMENT = jinja2.Environment(
+            # loader=jinja2.FileSystemLoader('templates'),
+            # extensions=['jinja2.ext.autoescape'],
+            # autoescape=True)
+            #
+            # template_values = {'message':'Stock Not Updated!!! Number should be greater than 0'}
+            #
+            # template = JINJA_ENVIRONMENT.get_template('ErrorPage.html')
+            # self.response.write(template.render(template_values))
+            self.cache('')
+            self.errorpage('Stock Not Updated!!! Number should be greater than 0')
+        else:
 
-        chapatis = me.chapati
-
-        for package in chapatis:
-            if package.id==packageType:
-                if calc=='add':
-                    package.quantity = package.quantity + int(numPackages)
-                    # self.response.write("ADDED")
-                if calc=='remove':
-                    package.quantity = package.quantity - int(numPackages)
-
-                    today = daily.query(daily.user_id==user_id, daily.date==datetime.now().date()).get()
-
-                    for item in today.chapati:
-                        if item.id==packageType:
-                            item.quantity = item.quantity + int(numPackages)
-
-                    today.put()
+            user_id = 'nidhi'
+            me = stock.query(stock.user_id==user_id).get()
 
 
 
-        me.chapati = chapatis
-        me.put()
+            self.cache('chapati')
 
-        time.sleep(.5)
-        self.redirect('/chapati')
+            chapatis = me.chapati
+
+            for package in chapatis:
+                if package.id==packageType:
+                    if calc=='add':
+                        package.quantity = package.quantity + int(numPackages)
+                        # self.response.write("ADDED")
+                    if calc=='remove':
+                        package.quantity = package.quantity - int(numPackages)
+
+                        today = daily.query(daily.user_id==user_id, daily.date==datetime.now().date()).get()
+
+                        for item in today.chapati:
+                            if item.id==packageType:
+                                item.quantity = item.quantity + int(numPackages)
+
+                        today.put()
+
+
+
+            me.chapati = chapatis
+            me.put()
+
+            time.sleep(.5)
+            self.redirect('/chapati')
 
         # self.response.write("TYPE: " + packageType + "\n" "Q: " + numPackages)
         # self.response.write(numPackages)

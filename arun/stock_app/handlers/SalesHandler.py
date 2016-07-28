@@ -19,7 +19,8 @@ class SalesHandler(webapp2.RequestHandler, BaseHandler):
         extensions=['jinja2.ext.autoescape'],
         autoescape=True)
 
-        user_id = users.get_current_user().user_id()
+        # user_id = users.get_current_user().user_id()
+        user_id = 'nidhi'
         me = stock.query(stock.user_id==user_id).get()
 
         itemType = self.request.get_all('item').pop(0)
@@ -32,15 +33,19 @@ class SalesHandler(webapp2.RequestHandler, BaseHandler):
         self.response.write(template.render())
 
         today = daily.query(daily.user_id==user_id, daily.date==datetime.strptime(saleDate, "%d-%m-%Y")).get()
-        #today = daily.query(daily.user_id==user_id, daily.date==saleDate).get()
-        template_values = {
-                'items':today.chapati,
-                'itemType':'chapati',
-                'date':saleDate,
-            }
 
-        template = JINJA_ENVIRONMENT.get_template('SalesView.html')
-        self.response.write(template.render(template_values))
+        if today:
+
+            template_values = {
+                    'items':today.chapati,
+                    'itemType':itemType,
+                    'date':saleDate,
+                }
+
+            template = JINJA_ENVIRONMENT.get_template('SalesView.html')
+            self.response.write(template.render(template_values))
+        else:
+            self.errorpage('No Data Available For Selected Date')
 
 
     def get(self):
@@ -52,7 +57,7 @@ class SalesHandler(webapp2.RequestHandler, BaseHandler):
         autoescape=True)
 
         user = users.get_current_user()
-        user_id = user.user_id()
+        # user_id = user.user_id()
 
 
         if str(user) in self.known:
