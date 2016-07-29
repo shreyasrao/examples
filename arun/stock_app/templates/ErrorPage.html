@@ -1,10 +1,32 @@
 <!DOCTYPE html>
+{% extends "Base.html" %}
 {% autoescape true %}
+
+{% block b1 %}
+
 <html>
+{#<head>#}
+{#<meta name="viewport" content="width=device-width, initial-scale=1">#}
+{#<link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css">#}
+{#<script src="http://code.jquery.com/jquery-1.11.3.min.js"></script>#}
+{#<script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>#}
+{#</head>#}
 <body>
 
-<div class="alert alert-info" role="alert">{{ message }}</div>
+<div data-role="header">
+  <div data-role="navbar">
+    <ul>
+      <li><a href="/chapati" data-ajax="false">Chapati</a></li>
+      <li><a href="/stock" data-ajax="false">Stock</a></li>
+      <li><a href="/sales" data-ajax="false">Sales</a></li>
+      <li><a href="{{ logout_url }}" data-ajax="false">Log Out</a></li>
+    </ul>
+  </div>
+</div>
+
+  <div data-role="main" class="ui-content">{{ message }}</div>
 
 </body>
+{% endblock %}
 </html>
 {% endautoescape %}

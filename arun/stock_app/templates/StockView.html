@@ -3,24 +3,94 @@
 {% autoescape true %}
 
 {% block b1 %}
-<table class="table table-striped">
-    <col width="30">
-  <col width="10">
-  <tr>
-    <th>Item</th>
-    <th>Quantity</th>
-  </tr>
+    <html>
+{#<head>#}
+{##}
+{#<!-- Include meta tag to ensure proper rendering and touch zooming -->#}
+{#<meta name="viewport" content="width=device-width, initial-scale=1">#}
+{##}
+{#<!-- Include jQuery Mobile stylesheets -->#}
+{#<link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css">#}
+{##}
+{#<!-- Include the jQuery library -->#}
+{#<script src="http://code.jquery.com/jquery-1.11.3.min.js"></script>#}
+{##}
+{#<!-- Include the jQuery Mobile library -->#}
+{#<script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>#}
+{##}
+{#</head>#}
 
+{#    <div data-role="page" id="stockpage">#}
+
+
+<div data-role="header">
+  <div data-role="navbar">
+    <ul>
+      <li><a href="/chapati" data-ajax="false">Chapati</a></li>
+      <li><a href="/stock" data-ajax="false">Stock</a></li>
+      <li><a href="/sales" data-ajax="false">Sales</a></li>
+      <li><a href="{{ logout_url }}" data-ajax="false">Log Out</a></li>
+    </ul>
+  </div>
+</div>
+
+
+    <table data-role="table" class="ui-responsive" id="myTable">
+  <thead>
+    <tr>
+      <th>Item</th>
+      <th>Quantity</th>
+    </tr>
+  </thead>
+  <tbody>
     {% for item in items %}
              <tr>
                 <td>{{ item.name }}</td>
                 <td>{{ item.quantity }}</td>
              </tr>
     {% endfor %}
-
+  </tbody>
 </table>
-{% endblock %}
-<br><br>
 
+
+{#    </div>#}
+
+{% endblock %}
+
+
+
+
+
+
+
+
+{#{% autoescape true %}#}
+{##}
+{#{% block b1 %}#}
+{##}
+{#    <table data-role="table" class="ui-responsive">#}
+{#    <col width="30">#}
+{#  <col width="10">#}
+{#  <tr>#}
+{#    <th>Item</th>#}
+{#    <th>Quantity</th>#}
+{#  </tr>#}
+{##}
+{#    {% for item in items %}#}
+{#             <tr>#}
+{#                <td>{{ item.name }}</td>#}
+{#                <td>{{ item.quantity }}</td>#}
+{#             </tr>#}
+{#    {% endfor %}#}
+{##}
+{#</table>#}
+{#    {% for item in items %}#}
+{#                {{ item.name }}#}
+{#                {{ item.quantity }}#}
+{#    {% endfor %}#}
+{##}
+{#{% endblock %}#}
+{#<br><br>#}
+{##}
 </html>
 {% endautoescape %}

@@ -60,7 +60,7 @@ class BaseHandler():
     #         # for key in output:
     #         #     print "Key is " + key + " : " + str(output[key])
 
-    known = {'servotechudupi':True, 's23rao':False}
+    known = {'servotechudupi':True, 's23rao':True, 'nidhifoodsudupi':False}
 
     def start(self):
 
@@ -140,10 +140,10 @@ class BaseHandler():
 
 
         #welcome to Connexus
-        userInfo = {
-            'user':user,
-            'logout_url': logout_url
-        }
+        # userInfo = {
+        #     'user':user,
+        #     'logout_url': logout_url
+        # }
 
 
         # template = JINJA_ENVIRONMENT.get_template('Welcome.html')
@@ -177,8 +177,8 @@ class BaseHandler():
             'logout_url': logout_url
         }
 
+        # searchHead = JINJA_ENVIRONMENT.get_template('Header.html')
         searchHead = JINJA_ENVIRONMENT.get_template('Header.html')
-        # self.response.write(searchHead.render(current = currentTab))
         self.response.write(searchHead.render(headerInfo))
 
     def errorpage(self, msg):
@@ -188,8 +188,9 @@ class BaseHandler():
         loader=jinja2.FileSystemLoader('templates'),
         extensions=['jinja2.ext.autoescape'],
         autoescape=True)
+        logout = logout_url = users.create_logout_url('/')
 
-        template_values = {'message':msg}
+        template_values = {'message':msg,'logout_url':logout}
 
         searchHead = JINJA_ENVIRONMENT.get_template('ErrorPage.html')
         # self.response.write(searchHead.render(current = currentTab))

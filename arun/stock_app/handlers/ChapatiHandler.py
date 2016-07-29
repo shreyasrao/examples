@@ -71,7 +71,7 @@ class ChapatiHandler(webapp2.RequestHandler, BaseHandler):
     #     today.put()
 
     def get(self):
-        self.cache('chapati')
+        # self.cache('chapati')
         #
         JINJA_ENVIRONMENT = jinja2.Environment(
         loader=jinja2.FileSystemLoader('templates'),
@@ -84,8 +84,14 @@ class ChapatiHandler(webapp2.RequestHandler, BaseHandler):
         if str(user) in self.known:
             self.start()
             self.daily()
+            logout = logout_url = users.create_logout_url('/')
+
+            template_values = {
+                'logout_url':logout,
+            }
+
             template = JINJA_ENVIRONMENT.get_template('UpdateChapati.html')
-            self.response.write(template.render())
+            self.response.write(template.render(template_values))
 
         else:
             self.errorpage('You Do Not Have Permission To View This Page')

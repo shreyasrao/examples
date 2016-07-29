@@ -71,7 +71,7 @@ class StockHandler(webapp2.RequestHandler, BaseHandler):
     #     today.put()
 
     def get(self):
-        self.cache('stock')
+        # self.cache('stock')
         #
         JINJA_ENVIRONMENT = jinja2.Environment(
         loader=jinja2.FileSystemLoader('templates'),
@@ -82,19 +82,23 @@ class StockHandler(webapp2.RequestHandler, BaseHandler):
         # user_id = user.user_id()
         user_id = 'nidhi'
 
-
         if str(user) in self.known:
             if self.known[str(user)]:
                 self.start()
                 self.daily()
                 me = stock.query(stock.user_id==user_id).get()
+                logout = logout_url = users.create_logout_url('/')
 
                 template_values = {
                         'items':me.chapati,
+                        'logout_url':logout,
                     }
 
                 template = JINJA_ENVIRONMENT.get_template('StockView.html')
                 self.response.write(template.render(template_values))
+
+
+
             else:
                 self.errorpage('You Do Not Have Permission To View This Page')
 

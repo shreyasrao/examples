@@ -25,21 +25,24 @@ class SalesHandler(webapp2.RequestHandler, BaseHandler):
 
         itemType = self.request.get_all('item').pop(0)
         saleDate = self.request.get_all('saledate').pop(0)
+
         # calc = self.request.get_all('calc').pop(0)
 
-        self.cache('sales')
+        # self.cache('sales')
 
-        template = JINJA_ENVIRONMENT.get_template('SalesFetch.html')
-        self.response.write(template.render())
+        # template = JINJA_ENVIRONMENT.get_template('SalesFetch.html')
+        # self.response.write(template.render())
 
-        today = daily.query(daily.user_id==user_id, daily.date==datetime.strptime(saleDate, "%d-%m-%Y")).get()
+        saleData = daily.query(daily.user_id==user_id, daily.date==datetime.strptime(saleDate, "%d-%m-%Y")).get()
 
-        if today:
+        if saleData:
+            logout = logout_url = users.create_logout_url('/')
 
             template_values = {
-                    'items':today.chapati,
+                    'items':saleData.chapati,
                     'itemType':itemType,
                     'date':saleDate,
+                    'logout_url': logout,
                 }
 
             template = JINJA_ENVIRONMENT.get_template('SalesView.html')
@@ -49,7 +52,7 @@ class SalesHandler(webapp2.RequestHandler, BaseHandler):
 
 
     def get(self):
-        self.cache('sales')
+        # self.cache('sales')
         #
         JINJA_ENVIRONMENT = jinja2.Environment(
         loader=jinja2.FileSystemLoader('templates'),
@@ -62,8 +65,14 @@ class SalesHandler(webapp2.RequestHandler, BaseHandler):
 
         if str(user) in self.known:
             if self.known[str(user)]:
+                logout = logout_url = users.create_logout_url('/')
+
+                template_values = {
+                    'logout_url':logout,
+                }
+
                 template = JINJA_ENVIRONMENT.get_template('SalesFetch.html')
-                self.response.write(template.render())
+                self.response.write(template.render(template_values))
             else:
                 self.errorpage('You Do Not Have Permission To View This Page')
 
