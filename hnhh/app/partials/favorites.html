@@ -1,0 +1,51 @@
+<div class="partial">
+  <div class="partial-siderbar">
+
+
+  </div>
+
+  <div class="partial-content">
+
+    <div class="page-header">
+      <h1>Library<br><small></small></h1>
+    </div>
+
+
+    <div class="container">
+      <div class="table-responsive">
+      <table class="table">
+        <thead>
+          <tr>
+            <th>IMG </th>
+            <th>Song </th>
+            <th>Artist </th>
+            <th>ADD </th>
+          </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="song in favorites | orderBy:'title' | orderBy:'artist'" song-item-directive="">
+              <td id="songData" titleVal="{{song.title}}" artistVal="{{song.artist}}" linkVal="{{song.url}}">{{ $index + 1 }}</td>
+              <td>{{ song.title }}</td>
+              <td>{{ song.artist }}</td>
+              <td><button ng-click="unlike(song)">-</button></td>
+            </tr>
+
+        </tbody>
+      </table>
+
+
+      </div>
+    </div>
+
+
+  </div>
+
+
+</div>
+
+
+
+
+
+</div>
+

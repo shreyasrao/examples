@@ -1,0 +1,112 @@
+.status {
+  color: black;
+  background-color: purple;
+  position: fixed;
+  /*top: 30px;*/
+  bottom: 0;
+  right:0;
+  width: 100%;
+  border: none;
+}
+
+#listData{
+    padding: 5px;
+    margin-left: 12px;
+    height: 3em;
+    max-width: 100%;
+    border: 1px solid;
+    overflow:hidden;
+    /*text-overflow: ellipsis;*/
+    /*white-space: nowrap;*/
+}
+
+.listHeading{
+    margin-left: 15px;
+    min-width: 200px;
+}
+
+.partial{
+  position: relative;
+  top: 30px;
+    padding-left: 300px;
+}
+
+.hiddenCell{
+    visibility: hidden;
+}
+
+.partial-siderbar{
+      margin-left: -350px;
+      /*left: 250px;*/
+      width: 350px;
+      background: #dfdfdf;
+      position: fixed;
+      height: 100%;
+      overflow-y: auto;
+      z-index: 1000;
+}
+
+.partial-content{
+    padding-left: 20px;
+    padding-top: 20px;
+
+
+}
+
+.navbar .navbar-default .navbar-fixed-top{
+  /*background-color: #761c19;*/
+  background-color: #d3d3d3;
+    padding: 0px;
+}
+
+.navbar .container {
+    padding: 0 16px;
+    width: auto;
+}
+
+.navbar .brand {
+    float: left;
+    margin: 8px 80px 0 8px;
+    padding: 0
+}
+
+.navbar .brand a {
+    display: block;
+    height: 30px;
+    margin: 6px 0 5px 0;
+    overflow: hidden;
+    padding: 0;
+    width: 117px
+}
+
+.navbar .nav {
+    float: left
+}
+
+.navbar .nav{
+  /*background-color: #761c19;*/
+    background-color: #dfdfdf;
+}
+
+.navbar-nav{
+    /*position: fixed;*/
+    white-space: nowrap;
+    display: inline-block;
+    height: 50px;
+    width:200px;
+    margin: auto;
+}
+
+.nav-link{
+    display:inline-block;
+}
+
+.container-fluid{
+  /*background-color: #761c19;*/
+    background-color: #dfdfdf;
+}
+
+/*#container {*/
+  /*max-width: 1960px;*/
+  /*margin: auto;*/
+/*}*/

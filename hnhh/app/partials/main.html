@@ -1,0 +1,97 @@
+<div class="partial">
+  <div class="partial-siderbar">
+
+
+  </div>
+
+  <div class="partial-content">
+
+    <div class="page-header">
+      <h1> For You<br><small> All new songs. All in one place.</small></h1>
+    </div>
+
+
+    <div class="container">
+      <div class="table-responsive">
+      <table class="table">
+        <thead>
+          <tr>
+            <th>IMG </th>
+            <th>Song </th>
+            <th>Artist </th>
+            <th>ADD </th>
+          </tr>
+        </thead>
+        <tbody>
+          <!--<div ng-repeat="song in songs | orderBy:'title' | orderBy:'artist'">-->
+            <tr ng-repeat="song in songs | orderBy:'title' | orderBy:'artist'" song-item-directive>
+              <td id="songData" titleVal="{{song.title}}" artistVal="{{song.artist}}" linkVal="{{song.url}}">{{ $index + 1 }}</td>
+              <td>{{ song.title }}</td>
+              <td>{{ song.artist }}</td>
+              <td>
+                <div class="plusMinus">
+                  <button ng-click="like(song)">+</button>
+                  <button class="notShown" ng-click="unlike(song)">-</button>
+                </div>
+              </td>
+
+
+            </tr>
+
+          <!--</div>-->
+        </tbody>
+      </table>
+
+        <!--<div ng-repeat="song in songs | orderBy:'title' | orderBy:'artist'">-->
+        <!--<div class="col-md-1">{{ $index + 1 }}</div>-->
+        <!--<div class="col-md-5">{{ song.title }}</div>-->
+        <!--<div class="col-md-5">{{ song.artist }}</div>-->
+        <!--<div class="col-md-1">-->
+          <!--<button ng-click="like(song)">+</button>-->
+        <!--</div>-->
+
+
+
+    <!--</div>-->
+
+      </div>
+    </div>
+
+
+
+
+
+    <!--<div class="row">-->
+      <!--<div class="col-md-1"></div>-->
+      <!--<div class="col-md-5">Song</div>-->
+      <!--<div class="col-md-5">Artist</div>-->
+      <!--<div class="col-md-1"></div>-->
+    <!--</div>-->
+
+    <!--&lt;!&ndash;<button ng-click="invite()">Invite another guest</button>&ndash;&gt;-->
+
+    <!--<div ng-repeat="song in songs | orderBy:'title' | orderBy:'artist'">-->
+      <!--<div class="row">-->
+        <!--<div class="col-md-1">{{ $index + 1 }}</div>-->
+        <!--<div class="col-md-5">{{ song.title }}</div>-->
+        <!--<div class="col-md-5">{{ song.artist }}</div>-->
+        <!--<div class="col-md-1">-->
+          <!--<button ng-click="like(song)">+</button>-->
+        <!--</div>-->
+
+      <!--</div>-->
+
+
+    <!--</div>-->
+
+  </div>
+
+
+</div>
+
+
+
+
+
+</div>
+
