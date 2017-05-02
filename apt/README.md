@@ -1,8 +1,2 @@
-<<<<<<< HEAD
-lab1_git
-========
-
-Files for the GIT exercise
-=======
-# shreyas
->>>>>>> 0c17034324076c2cb66f71ec511b67b172e37757
+Includes code from projects and assignments done during my Advanced Programming Tools course
+at the University of Texas, Austin in Fall 2015.
