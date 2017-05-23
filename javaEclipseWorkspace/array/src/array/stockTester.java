@@ -16,7 +16,6 @@ public class stockTester{
 	}
 	
 	
-	
 	@Test
 	public void in2() {
 		List<Integer> prices = Arrays.asList(12,11,13,9,12,8,14,13,15);
