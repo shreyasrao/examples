@@ -20,6 +20,7 @@ public class coins{
 	
 	public static int max(List<Integer> coins, int low, int high, List<List<Integer>> M) {
 		if(M.get(low).get(high)!=0) return M.get(low).get(high);
+		if(high<low) return 0;
 		if(low==high) {
 			M.get(low).set(high,coins.get(low));
 			return coins.get(low);
