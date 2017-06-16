@@ -19,42 +19,27 @@ public class traversal{
 		
 		while(curr!=null) {
 			Nwp next;
-			if(curr.left!=null) {
-				//there is a left tree
-				if(curr.right==prev) {
-					//left & right tree already seen
-					next = curr.parent;
-				}
-				else if(curr.left==prev) {
-					//left tree seen and we are at parent of left tree
-					res.add(curr);
-					if(curr.right!=null) next = curr.right;
-					else next = curr.parent;
-				}
-				else {
-					//left tree has not been seen yet
+			
+			if(prev==curr.parent) {
+				//visiting this node for first time (check left first)
+				if(curr.left!=null) {
+					//go left
 					next = curr.left;
-				}	
-			}
-			//there is no left tree
-			else if(curr.right!=null) {
-				//there is a right tree
-				if(curr.right==prev) {
-					//right tree already seen, move back up
-					next = curr.parent;
 				}
 				else {
-					//right tree not seen yet
 					res.add(curr);
-					next = curr.right;
+					next = (curr.right!=null) ? curr.right : curr.parent;
 				}
+			}
+			else if (prev==curr.left) {
+				//go right or back
+				res.add(curr);
+				next = (curr.right!=null) ? curr.right : curr.parent;
 			}
 			else {
-				//this is a leaf node
-				res.add(curr);
+				//go back up
 				next = curr.parent;
 			}
-			
 			prev = curr;
 			curr = next;
 		}
