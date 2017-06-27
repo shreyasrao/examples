@@ -39,4 +39,42 @@ public class knapsackTester{
 		//our algo should return 1180 as sum of one of the subsets
 		assertEquals(a,1180);
 	}
+	
+	@Test
+	public void equal() {
+		int[] set = {600,300,200,200,100,1};
+		List<Integer> a = new ArrayList<>();
+		List<Integer> b = new ArrayList<>();
+		knapsack.divideEqualItems(set, a, b);
+		assertEquals(a.size(),b.size());
+		assertEquals(a.size(),3);
+	}
+	
+	public static int sum(List<Integer> A) {
+		int sum = 0;
+		for(int a: A) sum+= a;
+		return sum;
+	}
+	
+	@Test
+	public void equal1() {
+		int[] set = {600,300,200,200,100,1};
+		List<Integer> a = new ArrayList<>();
+		List<Integer> b = new ArrayList<>();
+		knapsack.divideEqualItems(set, a, b);
+		assertEquals(701, sum(a));
+		assertEquals(700, sum(b));
+	}
+	
+	@Test
+	public void equal2() {
+		int[] set = {600,300,100,100,50,1};
+		List<Integer> a = new ArrayList<>();
+		List<Integer> b = new ArrayList<>();
+		knapsack.divideEqualItems(set, a, b);
+		assertEquals(a.size(),b.size());
+		assertEquals(651, sum(a));
+		assertEquals(500, sum(b));
+	}
+	
 }
