@@ -60,4 +60,33 @@ public class singleLinked{
 		return head;
 	}
 	
+	public static Node removeKthLastElement(Node head, int k) {
+		
+		/*
+		 * We do not know the length of the list before hand
+		 * nor can we assume we can record length of list.
+		 * Both of those scenarios would make this algorithm trivial
+		 * Our approach is to use 2 iterators, one which is ahead
+		 * */
+		
+		Node dummy = new Node(0, head);
+		Node sIter = dummy;
+		Node fIter = dummy;
+		
+		//advance fast iter by k
+		for(int i=0; i<=k;i++) {fIter = fIter.next;}
+		
+		//advance both iters
+		while(fIter!=null) {
+			fIter = fIter.next;
+			sIter = sIter.next;
+		}
+		
+		//Remove kth elem, i.e. sIter.next
+		Node temp = sIter.next;
+		sIter.next = (temp==null) ? null : temp.next;
+		
+		return dummy.next;
+	}
+	
 }

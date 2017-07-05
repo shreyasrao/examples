@@ -8,7 +8,7 @@ import linkedlist.singleLinked.Node;
 public class singleLinkedTester{
 	
 	@Test
-	public void in0() {
+	public void reverse0() {
 		Node e = new Node(2);
 		Node d = new Node(7,e);
 		Node c = new Node(5,d);
@@ -19,7 +19,7 @@ public class singleLinkedTester{
 	}
 	
 	@Test
-	public void in1() {
+	public void reverse1() {
 		Node e = new Node(2);
 		Node d = new Node(7,e);
 		Node c = new Node(5,d);
@@ -32,7 +32,7 @@ public class singleLinkedTester{
 	}
 	
 	@Test
-	public void in2() {
+	public void reverse2() {
 		Node e = new Node(2);
 		Node d = new Node(7,e);
 		Node c = new Node(5,d);
@@ -43,7 +43,7 @@ public class singleLinkedTester{
 	}
 	
 	@Test
-	public void in3() {
+	public void reverse3() {
 		Node e = new Node(2);
 		Node d = new Node(7,e);
 		Node c = new Node(5,d);
@@ -54,7 +54,7 @@ public class singleLinkedTester{
 	}
 	
 	@Test
-	public void in4() {
+	public void reverse4() {
 		Node e = new Node(2);
 		Node d = new Node(7,e);
 		Node c = new Node(5,d);
@@ -63,4 +63,49 @@ public class singleLinkedTester{
 		Node rL = singleLinked.reverse(a, 1, 5);
 		assertEquals("2, 7, 5, 3, 11, ", rL.toString());
 	}
+	
+	@Test
+	public void delete0() {
+		Node e = new Node(2);
+		Node d = new Node(7,e);
+		Node c = new Node(5,d);
+		Node b = new Node(3,c);
+		Node a = new Node(11,b);
+		Node rL = singleLinked.removeKthLastElement(a, 0);
+		assertEquals("11, 3, 5, 7, 2, ", rL.toString());
+	}
+	
+	@Test
+	public void delete1() {
+		Node e = new Node(2);
+		Node d = new Node(7,e);
+		Node c = new Node(5,d);
+		Node b = new Node(3,c);
+		Node a = new Node(11,b);
+		Node rL = singleLinked.removeKthLastElement(a, 1);
+		assertEquals("11, 3, 5, 7, ", rL.toString());
+	}
+	
+	@Test
+	public void deleteFirst() {
+		Node e = new Node(2);
+		Node d = new Node(7,e);
+		Node c = new Node(5,d);
+		Node b = new Node(3,c);
+		Node a = new Node(11,b);
+		Node rL = singleLinked.removeKthLastElement(a, 5);
+		assertEquals("3, 5, 7, 2, ", rL.toString());
+	}
+	
+	@Test
+	public void delete3() {
+		Node e = new Node(2);
+		Node d = new Node(7,e);
+		Node c = new Node(5,d);
+		Node b = new Node(3,c);
+		Node a = new Node(11,b);
+		Node rL = singleLinked.removeKthLastElement(a, 3);
+		assertEquals("11, 3, 7, 2, ", rL.toString());
+	}
+	
 }
