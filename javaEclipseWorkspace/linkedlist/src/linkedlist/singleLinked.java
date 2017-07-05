@@ -28,46 +28,35 @@ public class singleLinked{
 	}
 	
 	public static Node reverse(Node head, int low, int high) {
-		if(high-low < 1) {return head;}
-		Node dummy = new Node(-1);
-		Node preStart = null;
-		Node preEnd = null;
-		Node curr = head;
-		Node prev = dummy;
-		int counter = 1;
-		Node sS = head;
-		while(curr!=null) {
-			if(counter==low) {
-				preStart = prev;
-				sS = curr;
-				prev.next = null;
-			}
-			if(counter==high) {
-				preEnd = curr.next;
-				curr.next = null;
-				break;
-			}
-			prev = curr;
-			curr = curr.next;
-			counter++;
+		
+		/*
+		 * Reverse sublist of head from low to high inclusive
+		 * high must to greater than low
+		 * lowest index number is 1
+		 * if low is less than 1, first list elem with be considered
+		 * if high greater than end of list, method will reverse 
+		 * till end of list and return
+		 * */
+		
+		if(high-low<1) return head;
+		
+		Node dummy = new Node(0, head);
+		Node sS = dummy;
+		for(int counter=1;counter<low;counter++) {
+			if(sS==null) return head;
+			sS = sS.next;
 		}
-		curr = sS;
-		Node nS = sS;
-		while(curr!=null && curr.next!=null) {
-			nS = curr.next;
-			curr.next = nS.next;
-			nS.next = sS;
-			sS = nS;
+		Node sIter = sS.next;
+		for(int i=low;i<high;i++) {
+			if(sIter.next==null) break;
+			Node temp = sIter.next;
+			sIter.next = temp.next;
+			temp.next = sS.next;
+			sS.next = temp;
 		}
 		
-		//reconnect reversed substring back to main string
-		if(preStart==dummy) {
-			head = sS;
-		}
-		else {
-			preStart.next=sS;
-		}
-		if(preEnd!=null && curr!=null) curr.next = preEnd;
+		//if we moved the head then we need to update it
+		head = (sS==dummy) ? sS.next : head;
 		return head;
 	}
 	
