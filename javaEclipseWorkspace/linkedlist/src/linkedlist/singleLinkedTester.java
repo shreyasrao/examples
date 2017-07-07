@@ -108,4 +108,45 @@ public class singleLinkedTester{
 		assertEquals("11, 3, 7, 2, ", rL.toString());
 	}
 	
+	@Test
+	public void evenOdd() {
+		Node e = new Node(2);
+		Node d = new Node(7,e);
+		Node c = new Node(5,d);
+		Node b = new Node(3,c);
+		Node a = new Node(11,b);
+		Node rL = singleLinked.evenOddMerge(a);
+		assertEquals("2, 11, 3, 5, 7, ", rL.toString());
+	}
+	
+	@Test
+	public void evenOdd2() {
+		Node e = new Node(2);
+		Node d = new Node(7,e);
+		Node c = new Node(5,d);
+		Node b = new Node(30,c);
+		Node a = new Node(11,b);
+		Node rL = singleLinked.evenOddMerge(a);
+		assertEquals("30, 2, 11, 5, 7, ", rL.toString());
+	}
+	
+	@Test
+	public void evenOdd3() {
+		Node d = new Node(7);
+		Node c = new Node(5,d);
+		Node b = new Node(3,c);
+		Node a = new Node(11,b);
+		Node rL = singleLinked.evenOddMerge(a);
+		assertEquals("11, 3, 5, 7, ", rL.toString());
+	}
+	
+	@Test
+	public void evenOddIndices() {
+		Node d = new Node(7);
+		Node c = new Node(5,d);
+		Node b = new Node(3,c);
+		Node a = new Node(11,b);
+		Node rL = singleLinked.evenOddIndices(a);
+		assertEquals("11, 5, 3, 7, ", rL.toString());
+	}
 }
