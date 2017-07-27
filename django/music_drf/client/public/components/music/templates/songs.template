@@ -1,0 +1,5 @@
+<div ng-controller="SongsController">
+    <div>
+        {{ message }}
+    </div>
+</div>

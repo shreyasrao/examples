@@ -1,0 +1,7 @@
+{
+  "name": "music-client",
+  "description": "Angular application",
+  "dependencies": {
+    "express": "^4.13.4"
+  }
+}
