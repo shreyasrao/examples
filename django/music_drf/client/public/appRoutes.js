@@ -13,7 +13,7 @@ angular
 	name: 'mySongs',
 	url: '/my-songs/',
 	templateUrl: 'public/components/music/templates/my-songs.template',
-	controller: 'SongsController'
+	controller: 'MySongsController'
 
 
 	})
