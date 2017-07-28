@@ -5,5 +5,6 @@ var music = angular.module("music",[]);
 angular
 	.module('MusicApplication', [
 	   'appRoutes',
-	   'music'
+	   'music',
+	   'ngResource'
 	]);
