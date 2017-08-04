@@ -14,13 +14,15 @@ for subjectTypeDir in subjectlist:
 	for root,notUseddirs,files in os.walk(subjectTypeDir):
 		prefix = subjectTypeDir.replace('/','-')
 		for f in files:
+			if "DS_Store" in f:
+				print("skipping :" + f)
+				continue
 			#print(prefix+f)	
 			origF = os.path.join(root,f)		
-			#print("rename:" + origF)		
+			print("rename:" + origF)		
 			newFileName = origF.replace('/','-')
 			pathToImg = root + "/"
 			#print("place in:"+ pathToImg)
-			#print("nuname:" + pathToImg+ newFileName)
-			newName = pathToImg + newFileName
-			os.rename(origF,newName)
-		
+			#print("all/"+ newFileName)
+			newF = "all/"+ newFileName
+			os.rename(origF,newF)
