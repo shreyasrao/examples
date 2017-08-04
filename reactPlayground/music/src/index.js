@@ -10,8 +10,8 @@ import { react2angular } from 'react2angular'
 
 
 var SONGQUERY = [
-      {index:0,title:"BARF",artist:"Drizzy"},
-      {index:1,title:"HEROOOOR",artist:"FUK"}
+      {index:0,title:"Views",artist:"Drizzy"},
+      {index:1,title:"Sweet Life",artist:"Frank Ocean"}
 ]
 
 
