@@ -6,8 +6,6 @@ def getSubject(fileName):
         return fileName.split("-")[1]
 
 def analyzeRun(enrolledImg, res):
-	#falsePositives = 0
-	#truePositives = 0
 	trueSubject = getSubject(enrolledImg)
 
 	runStats = {'enrolled': enrolledImg, 'fP': 0, 'tP': 0, 'fN': 0, 'tN':0}
@@ -33,6 +31,7 @@ def analyzeRun(enrolledImg, res):
 				runStats['fP'] = runStats['fP']+1
 	
 	print(runStats)
+	return runStats
 
 
 
@@ -41,10 +40,14 @@ def runDetection(enrolledImg):
 	proc = subprocess.Popen(['face_recognition', 'known/',  'all/'], stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
 
 	res = proc.communicate()[0].decode("utf-8")
-	analyzeRun(enrolledImg,res)
+	return analyzeRun(enrolledImg,res)
         #print(res)
 
-
+def updateGlobalStats(g,r):
+	g['tP'] = g['tP'] + r['tP']
+	g['tN'] = g['tN'] + r['tN']
+	g['fP'] = g['fP'] + r['fP']
+	g['fN'] = g['fN'] + r['fN']
 
 
 # Begin my running all against empty. Look for WARNING
@@ -58,28 +61,15 @@ for line in res.splitlines():
 		print("Moving: " + noIdFile)
 		os.rename(noIdFile,"noFaceDetected/"+noIdFile)
 
+
+globalStats = {'fP': 0, 'tP': 0, 'fN': 0, 'tN':0}
+
 for root,dirs,files in os.walk("all/"):
 	for f in files:
 		enrolledImg = f
 		copyfile(os.path.join(root,f),"known/enrolled.jpg")
 		#print(f)
-		runDetection(f)
+		runRes = runDetection(f)
+		updateGlobalStats(globalStats,runRes)
 
-
-'''
-proc = subprocess.Popen(['face_recognition', 'known/',  'all/'], stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
-
-res = proc.communicate()[0].decode("utf-8")
-print(res)
-'''
-
-
-'''
-try:
-  execfile('whatever.py')
-except SystemExit:
-  print "sys.exit was called but I'm proceeding anyway (so there!-)."
-print "so I'll print this, etc, etc"
-'''
-#this script will call all combos of oneRun. Need try and catch block to stop exec of this script 
-#if oneRun encounters an error and exits
+print(globalStats)
