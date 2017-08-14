@@ -80,7 +80,7 @@ def clearStats(d):
 		d[key] = 0
 
 #for root,dirs,files in os.walk("all/"):
-for tol in range(0,100):
+for tol in range(50,100):
 	t = tol/100
 	t = str(t)
 	#f = str(int(rand[tol]))
