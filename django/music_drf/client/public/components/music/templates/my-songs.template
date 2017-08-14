@@ -1,9 +1,0 @@
-<div ng-controller="SongsController">
-        My Songs
-        <div ng-repeat="song in mySongs">
-                Title: {{song.title}} <br/>
-                artist: {{song.artist}} <br/>
-                song_url: {{song.song_url}} <br/>
-                img_url: {{song.img_url}} <br/>
-        </div>
-</div>
