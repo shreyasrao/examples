@@ -1,6 +1,6 @@
 # Public Code Samples
 
-Contains code samples from past school classes/projects along with frameworks & libraries I'm playing around with
+Code samples from school/personal projects along with frameworks & libraries I'm playing around with
 
 ## Details:
 * [ConnexusPhotoSharingApp](https://github.com/shreyasrao/public/tree/master/ConnexusPhotoSharingApp): Google Cloud Platform web app
